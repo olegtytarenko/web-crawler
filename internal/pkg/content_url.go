@@ -23,8 +23,6 @@ func loadContent(url url.URL) (*http.Response, error) {
 		return &http.Response{StatusCode: http.StatusBadGateway}, errors.New(fmt.Sprintf("Status code is not correct %d", hRes.StatusCode))
 	}
 
-	fmt.Println("Loaded Content")
-
 	return hRes, nil
 }
 
