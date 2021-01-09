@@ -43,14 +43,14 @@ func (cfu ContentFromUrl) GetAnchorLinks() ([]ContentFromUrl, error) {
 	return listContentFromUrls, nil
 }
 
-func NewContentFromUrl(url url.URL) (*ContentFromUrl, error) {
-	contentFromUrl := &ContentFromUrl{URL: url}
+func NewContentFromUrl(url *url.URL) (*ContentFromUrl, error) {
+	contentFromUrl := &ContentFromUrl{URL: *url}
 	res, err := loadContent(contentFromUrl.URL)
 	if err != nil {
 		return nil, err
 	}
 	return &ContentFromUrl{
-		URL:      url,
+		URL:      *url,
 		Response: *res,
 	}, nil
 }

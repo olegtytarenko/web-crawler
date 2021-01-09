@@ -7,14 +7,21 @@ import (
 
 type PKG struct {
 	*pkg.Validation
+	*pkg.ContentFromUrl
 }
 
-func (p PKG) NewContentFromUrl(url url.URL) (*pkg.ContentFromUrl, error) {
-	return pkg.NewContentFromUrl(url)
+func (p PKG) NewContentFromUrl(url *url.URL) error {
+	contentFromUrl, err := pkg.NewContentFromUrl(url)
+	if contentFromUrl == nil {
+		return err
+	}
+	p.ContentFromUrl = contentFromUrl
+	return err
 }
 
 func NewPack() *PKG {
 	return &PKG{
 		&pkg.Validation{},
+		&pkg.ContentFromUrl{},
 	}
 }

@@ -23,12 +23,16 @@ func main() {
 		log.Fatal("Url argument is empty or wrong")
 		return
 	}
-	ContentFromUrl, err := packages.NewContentFromUrl(*Url)
+	err := packages.NewContentFromUrl(Url)
 	if err != nil {
 		log.Fatal(err.Error())
 		return
 	}
 
-	fmt.Println(ContentFromUrl.ReadResponse())
+	res, err := packages.ReadResponse()
+	if err != nil {
+		log.Fatal(err)
+	}
+	fmt.Println(res)
 
 }
