@@ -10,13 +10,13 @@ type PKG struct {
 	*pkg.ContentFromUrl
 }
 
-func (p PKG) NewContentFromUrl(url *url.URL) error {
+func (p *PKG) NewContentFromUrl(url *url.URL) error {
 	contentFromUrl, err := pkg.NewContentFromUrl(url)
-	if contentFromUrl == nil {
+	if err != nil {
 		return err
 	}
 	p.ContentFromUrl = contentFromUrl
-	return err
+	return nil
 }
 
 func NewPack() *PKG {
