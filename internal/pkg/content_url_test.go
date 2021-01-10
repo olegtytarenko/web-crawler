@@ -46,10 +46,15 @@ func TestNewContentFromUrl(t *testing.T) {
 			t.Logf("Read response Status code is %d", ContentFromUrl.Response.StatusCode)
 			t.Fail()
 		}
-		_, err = ContentFromUrl.ReadResponse()
+		contentData, err := ContentFromUrl.ReadResponse()
 
 		if err != nil && isNotError == false {
 			t.Logf("Read Response has error: %s", err)
+			t.Fail()
+		}
+
+		if contentData == "" {
+			t.Logf("Conetnt is empty")
 			t.Fail()
 		}
 	}
